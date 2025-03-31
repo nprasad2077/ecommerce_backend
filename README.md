@@ -38,18 +38,25 @@ This e-commerce backend provides a complete RESTful API for an online store. Key
 
 1. Clone the repository
 2. Install required packages:
+
    ```
    pip install -r requirements.txt
    ```
+
 3. Run migrations:
+
    ```
    python manage.py migrate
    ```
+
 4. Create a superuser:
+
    ```
    python manage.py createsuperuser
    ```
+
 5. Start the development server:
+
    ```
    python manage.py runserver
    ```
@@ -74,6 +81,8 @@ This e-commerce backend provides a complete RESTful API for an online store. Key
 | Endpoint | Method | Description | Access |
 |----------|--------|-------------|--------|
 | `/api/products/` | GET | Get all products (with pagination) | Public |
+| `/api/products/?keyword=` | GET | Search for specific product by keyword | Public |
+| `/api/products/?category=` | GET | Search all products by Category | Public |
 | `/api/products/<id>/` | GET | Get product details | Public |
 | `/api/products/create/` | POST | Create new product | Admin |
 | `/api/products/update/<id>/` | PUT | Update product | Admin |
@@ -117,6 +126,7 @@ Send a POST request to `/api/users/login/` with user credentials:
 ```
 
 The response includes:
+
 - User information
 - Access token
 
@@ -270,6 +280,7 @@ The frontend needs to implement proper API calls using:
 ### User Registration
 
 **Request:**
+
 ```http
 POST /api/users/register/
 Content-Type: application/json
@@ -282,6 +293,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "id": 3,
@@ -297,6 +309,7 @@ Content-Type: application/json
 ### User Login
 
 **Request:**
+
 ```http
 POST /api/users/login/
 Content-Type: application/json
@@ -308,6 +321,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "id": 3,
@@ -323,11 +337,13 @@ Content-Type: application/json
 ### Get Product List
 
 **Request:**
+
 ```http
 GET /api/products/
 ```
 
 **Response:**
+
 ```json
 {
   "products": [
@@ -354,6 +370,7 @@ GET /api/products/
 ### Create Product Review
 
 **Request:**
+
 ```http
 POST /api/products/5/reviews/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
@@ -366,6 +383,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```
 "Review Added"
 ```
@@ -373,6 +391,7 @@ Content-Type: application/json
 ### Create Order
 
 **Request:**
+
 ```http
 POST /api/orders/add/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
@@ -402,6 +421,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "_id": 3,
@@ -448,12 +468,14 @@ Content-Type: application/json
 ### Update Order to Paid
 
 **Request:**
+
 ```http
 PUT /api/orders/3/pay/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
 ```
 
 **Response:**
+
 ```
 "Order was paid"
 ```
@@ -461,6 +483,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
 ### Upload Product Image
 
 **Request:**
+
 ```http
 POST /api/products/upload/
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
@@ -473,6 +496,7 @@ Content-Type: multipart/form-data
 ```
 
 **Response:**
+
 ```
 "Image was uploaded"
 ```

@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-secret-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["159.203.171.104", "159.203.171.104:8888", "localhost", "127.0.0.1", "django.server.nbaapi.com"]
+ALLOWED_HOSTS = ["django.server.nbaapi.com", "localhost", "127.0.0.1", "159.203.171.104", "nbaapi.com"]
 
 
 # Application definition

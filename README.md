@@ -90,6 +90,7 @@ This e-commerce backend provides a complete RESTful API for an online store. Key
 | `/api/products/upload/` | POST | Upload product image | Admin |
 | `/api/products/<id>/reviews/` | POST | Create product review | Authenticated |
 | `/api/products/top/` | GET | Get top rated products | Public |
+| `/api/products/categories/` | GET | Get list of categories | Public |
 
 ### Order Endpoints
 

@@ -12,6 +12,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
 
+# Add to any view
+from django.http import JsonResponse
+
+def debug_request(request):
+    return JsonResponse({"host": request.get_host()})
+
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)

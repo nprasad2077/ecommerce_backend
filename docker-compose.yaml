@@ -1,18 +1,6 @@
 version: "3.9"
 
 services:
-  db:
-    image: postgres:15
-    ports:
-      - "5433:5432" # Host:Container — use 5433 locally
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data/
-    environment:
-      POSTGRES_DB: ecommerce
-      POSTGRES_USER: ecommerce_user
-      POSTGRES_PASSWORD: ecommerce_pass
-    restart: always
-
   web:
     build: .
     command: >
@@ -23,13 +11,8 @@ services:
     volumes:
       - .:/code
       - ./static:/code/static
-      - C:\Users\gangs\ecommerce_media:/code/media
+      - root/media:/code/media
     ports:
       - "8000:8000"
-    depends_on:
-      - db
     env_file:
       - .env
-
-volumes:
-  postgres_data:

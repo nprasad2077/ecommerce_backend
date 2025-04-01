@@ -30,6 +30,11 @@ ALLOWED_HOSTS = ["*"]
 
 USE_X_FORWARDED_HOST = True
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.nbaapi.com",
+]
+
+
 # Application definition
 
 INSTALLED_APPS = [

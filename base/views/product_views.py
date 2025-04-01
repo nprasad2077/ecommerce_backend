@@ -11,18 +11,21 @@ from base.serializers import ProductSerializer
 from rest_framework import status
 
 
-@api_view(["GET"])
+@api_view(['GET'])
 def getProducts(request):
-    query = request.query_params.get("keyword", "")
+    keyword = request.query_params.get('keyword', '')
+    category = request.query_params.get('category', '')
 
-    products = Product.objects.filter(
-        Q(name__icontains=query)
-        | Q(brand__icontains=query)
-        | Q(description__icontains=query)
-        | Q(category__icontains=query)
-    )
+    # Flexible text search across multiple fields
+    filters = Q(name__icontains=keyword) | Q(brand__icontains=keyword) | Q(description__icontains=keyword) | Q(category__icontains=keyword)
 
-    page = request.query_params.get("page")
+    # Optional: strict category filter (exact or icontains depending on UI preference)
+    if category:
+        filters &= Q(category__iexact=category)
+
+    products = Product.objects.filter(filters)
+
+    page = request.query_params.get('page')
     paginator = Paginator(products, 5)
 
     try:
@@ -36,9 +39,11 @@ def getProducts(request):
         page = 1
 
     serializer = ProductSerializer(products, many=True)
-    return Response(
-        {"products": serializer.data, "page": int(page), "pages": paginator.num_pages}
-    )
+    return Response({
+        'products': serializer.data,
+        'page': int(page),
+        'pages': paginator.num_pages
+    })
 
 
 @api_view(["GET"])

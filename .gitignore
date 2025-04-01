@@ -172,3 +172,15 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+update_products.ps1
+update_fashion_products.ps1
+
+
+
+static/
+static/*
+
+postgres_data
+postgres_data/*

@@ -20,8 +20,7 @@ services:
     ports:
       - "8888:80"
     volumes:
-      - ./nginx/custom.conf:/etc/nginx/conf.d/custom.conf  # Changed path
-      - ./static:/code/static
-      - ./media:/code/media  # Changed from /home/media to ./media
+      - ./nginx/custom.conf:/etc/nginx/conf.d/custom.conf
+      - home/media:/code/media
     depends_on:
       - web

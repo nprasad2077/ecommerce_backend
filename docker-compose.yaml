@@ -10,7 +10,6 @@ services:
              gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --log-level debug"
     volumes:
       - .:/code
-      - /home/media:/code/media
     expose:
       - "8000"
     env_file:
@@ -21,8 +20,8 @@ services:
     ports:
       - "8888:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/custom.conf:/etc/nginx/conf.d/custom.conf  # Changed path
       - ./static:/code/static
-      - /home/media:/code/media
+      - ./media:/code/media  # Changed from /home/media to ./media
     depends_on:
       - web

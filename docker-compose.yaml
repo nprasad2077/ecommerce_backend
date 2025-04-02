@@ -1,3 +1,5 @@
+version: '3.9'
+
 services:
   web:
     build: .
@@ -19,8 +21,8 @@ services:
     ports:
       - "8888:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - /home/media:/code/media
+      - ./nginx.conf:/etc/nginx/nginx.conf         # 🔥 Changed this line
       - ./static:/code/static
+      - /home/media:/code/media
     depends_on:
       - web

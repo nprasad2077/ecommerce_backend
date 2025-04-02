@@ -17,11 +17,12 @@ services:
       - .env
 
   nginx:
-    image: nginx:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
     ports:
       - "8888:80"
     volumes:
-      - ${PWD}/nginx/custom.conf:/etc/nginx/conf.d/server.conf:ro
       - ./static:/code/static
       - /home/media:/code/media
     depends_on:

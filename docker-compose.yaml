@@ -23,7 +23,7 @@ services:
     ports:
       - "8888:80"
     volumes:
-      - ./static:/code/static
+      - /home/static:/code/static
       - /home/media:/code/media
     depends_on:
       - web

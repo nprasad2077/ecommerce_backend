@@ -3,6 +3,7 @@ version: '3.9'
 services:
   web:
     build: .
+    container_name: ecommerce-web  # Fixed name
     command: >
       sh -c "python manage.py migrate &&
              python manage.py collectstatic --noinput &&
@@ -16,12 +17,13 @@ services:
     env_file:
       - .env
     networks:
-      - coolify
+      - app-network
 
   nginx:
     build:
       context: .
       dockerfile: Dockerfile.nginx
+    container_name: ecommerce-nginx  # Fixed name
     ports:
       - "8888:80"
     volumes:
@@ -30,12 +32,12 @@ services:
     depends_on:
       - web
     networks:
-      - coolify
+      - app-network
 
 volumes:
   static_volume:
   media_volume:
 
 networks:
-  coolify:
-    external: true
+  app-network:
+    driver: bridge
